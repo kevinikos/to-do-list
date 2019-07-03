@@ -46,10 +46,19 @@ function main() {
     taskInput.value = "";
   }
 
+  function removeDoneTasks() {
+    var tasks = [...toDoList.querySelectorAll("li")];
+    tasks.forEach(function(task) {
+      if (task.className == "cross-line") {
+        toDoList.removeChild(task);
+      }
+    });
+  }
+
   taskInput.addEventListener("input", userInput);
 
   addBtn.addEventListener("click", createTask);
 
-  deleteBtn.addEventListener("");
+  deleteBtn.addEventListener("click", removeDoneTasks);
 }
 document.addEventListener("DOMContentLoaded", main);

@@ -33,11 +33,7 @@ body {
   display: block;
   width: 240px;
   height: 100px;
-  color: white;
-  font-size: 32px;
-  font-weight: bold;
   text-align: center;
-  line-height: 75px;
   background-color: DodgerBlue;
   top: -25px;
   left: 180px;
@@ -51,7 +47,10 @@ body {
   left: 180px;
 }
 #counter {
+  color: white;
   font-size: 32px;
+  font-weight: bold;
+  line-height: 75px;
 }
 .input-box {
   display: flex;

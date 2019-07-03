@@ -4,15 +4,16 @@ function main() {
   var toDoList = document.querySelector(".to-do-list");
   var taskInput = document.querySelector(".input-box input");
   var counterSpan = document.getElementById("counter");
-  var counter = {
-    value: 0,
-    counterIncrement: function() {
-      return ++this.value;
-    },
-    counterDecrement: function() {
-      return --this.value;
-    }
-  };
+
+  function taskCounter() {
+    var tasks = [...toDoList.querySelectorAll("li")];
+    var unfinishedTasks = tasks.filter(function(task) {
+      return task.className != "cross-line";
+    });
+    var counter = unfinishedTasks.length;
+    counterSpan.innerText =
+      counter != 0 ? `To Do: ${counter}` : "Nothing To Do";
+  }
 
   function userInput() {
     return taskInput.value;
@@ -20,17 +21,12 @@ function main() {
 
   function markTask() {
     this.parentNode.classList.toggle("cross-line");
-    var tasks = [...toDoList.querySelectorAll("li")];
-    var unfinishedTasks = tasks.filter(function(task) {
-      return task.className != "cross-line";
-    });
-    counter.value = unfinishedTasks.length;
-    counterSpan.innerText = counter.value;
+    taskCounter();
   }
 
   function removeTask() {
     this.parentNode.parentNode.removeChild(this.parentNode);
-    counterSpan.innerText = counter.counterDecrement();
+    taskCounter();
   }
 
   function createTask() {
@@ -59,7 +55,7 @@ function main() {
       taskCompleteBtn.addEventListener("click", markTask);
       taskTrashBtn.addEventListener("click", removeTask);
       // Task counter
-      counterSpan.innerText = counter.counterIncrement();
+      taskCounter();
     }
     // Empty input
     taskInput.value = "";

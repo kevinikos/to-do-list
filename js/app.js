@@ -3,6 +3,16 @@ function main() {
   var deleteBtn = document.querySelector(".btn-delete");
   var toDoList = document.querySelector(".to-do-list");
   var taskInput = document.querySelector(".input-box input");
+  var counterSpan = document.getElementById("counter");
+  var counter = {
+    value: 0,
+    counterIncrement: function() {
+      return ++this.value;
+    },
+    counterDecrement: function() {
+      return --this.value;
+    }
+  };
 
   function userInput() {
     return taskInput.value;
@@ -10,10 +20,17 @@ function main() {
 
   function markTask() {
     this.parentNode.classList.toggle("cross-line");
+    var tasks = [...toDoList.querySelectorAll("li")];
+    var unfinishedTasks = tasks.filter(function(task) {
+      return task.className != "cross-line";
+    });
+    counter.value = unfinishedTasks.length;
+    counterSpan.innerText = counter.value;
   }
 
   function removeTask() {
     this.parentNode.parentNode.removeChild(this.parentNode);
+    counterSpan.innerText = counter.counterDecrement();
   }
 
   function createTask() {
@@ -41,6 +58,8 @@ function main() {
       // Button listeners
       taskCompleteBtn.addEventListener("click", markTask);
       taskTrashBtn.addEventListener("click", removeTask);
+      // Task counter
+      counterSpan.innerText = counter.counterIncrement();
     }
     // Empty input
     taskInput.value = "";

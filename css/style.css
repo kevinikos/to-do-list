@@ -50,6 +50,9 @@ body {
   top: -70px;
   left: 180px;
 }
+#counter {
+  font-size: 32px;
+}
 .input-box {
   display: flex;
   border-radius: 5px;

@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 16px;
+}
+body {
+  background-color: #e2e1e0;
+}
+.max-width {
+  width: 600px;
+  margin: 0 auto;
+  padding-top: 125px;
+}
+.container {
+  border-radius: 15px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+}
+.container:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.title-box {
+  position: absolute;
+  display: block;
+  width: 240px;
+  height: 100px;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 75px;
+  background-color: DodgerBlue;
+  top: -25px;
+  left: 180px;
+  z-index: -1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 15px;
+}
+.container:hover .title-box {
+  top: -70px;
+  left: 180px;
+}
+.input-box {
+  display: flex;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.input-box > * {
+  padding: 10px;
+  margin-right: -1px;
+}
+.input-box button {
+  width: 100px;
+}
+.input-box input:focus {
+  outline: none;
+}
+.input-box input {
+  border: none;
+  border-radius: 5px 0 0 5px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.btn-add {
+  background-color: #2ecc40;
+  border: 1px solid #29a537;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+}
+.btn-add:hover {
+  background-color: #29a537;
+}
+.btn-add:after {
+  background-color: #90ee90;
+}
+.btn-delete {
+  background-color: #ff4136;
+  border: 1px solid #c9332b;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  border-radius: 0 5px 5px 0;
+}
+.btn-delete:hover {
+  background-color: #c9332b;
+}
+.btn-delete:after {
+  background-color: #f19d99;
+}
+.btn-add:after,
+.btn-delete:after {
+  content: "";
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s;
+}
+.btn-add:active:after,
+.btn-delete:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
+}
+.btn-add:focus,
+.btn-delete:focus {
+  outline: 0;
+}
+.list-box {
+  padding-top: 40px;
+  width: 80%;
+}
+.to-do-list {
+  list-style: none;
+  text-align: center;
+}
+.to-do-list li {
+  height: 50px;
+  line-height: 30px;
+  padding: 10px;
+  border-radius: 35px;
+  margin-top: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+}
+.to-do-list li:first-child {
+  color: #c9332b;
+  text-decoration: line-through;
+  /* border: 1px solid #c9332b; */
+}
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+}
+.btn.btn-close {
+  top: 10px;
+  right: 42px;
+}
+.btn.btn-trash {
+  top: 10px;
+  right: 8px;
+}
+.btn:hover {
+  background-color: RoyalBlue;
+}
+.btn:focus {
+  outline: none;
+}

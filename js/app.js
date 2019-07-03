@@ -31,7 +31,7 @@ function main() {
 
   function createTask() {
     var taskContent = userInput();
-    if (taskContent) {
+    if (taskContent && taskContent.length <= 25) {
       var task = document.createElement("li");
       // Complete button
       var taskCompleteBtn = document.createElement("button");
@@ -56,6 +56,8 @@ function main() {
       taskTrashBtn.addEventListener("click", removeTask);
       // Task counter
       taskCounter();
+    } else if (taskContent.length > 25) {
+      alert("Twoje zdanie nie może być dłuższe niż 25 znaków!");
     }
     // Empty input
     taskInput.value = "";

@@ -153,9 +153,13 @@ body {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
 }
+.to-do-list sup {
+  font-size: 12px;
+}
 .cross-line {
   color: #c9332b;
   text-decoration: line-through;
+  border: 1px solid #c9332b;
 }
 .btn {
   background-color: DodgerBlue;

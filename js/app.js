@@ -4,6 +4,7 @@ function main() {
   var toDoList = document.querySelector(".to-do-list");
   var taskInput = document.querySelector(".input-box input");
   var counterSpan = document.getElementById("counter");
+  var rankList = document.getElementById("rankList");
 
   function taskCounter() {
     var tasks = [...toDoList.querySelectorAll("li")];
@@ -31,13 +32,14 @@ function main() {
 
   function createTask() {
     var taskContent = userInput();
+    var taskRank = taskRankNumber();
     if (taskContent && taskContent.length <= 25) {
       var task = document.createElement("li");
       // Complete button
       var taskCompleteBtn = document.createElement("button");
       var completeImg = document.createElement("i");
       toDoList.appendChild(task);
-      task.innerText = taskContent;
+      task.innerHTML = `${taskContent} <sup>${taskRank}</sup>`;
       task.appendChild(taskCompleteBtn);
       taskCompleteBtn.appendChild(completeImg);
       taskCompleteBtn.setAttribute("title", "Complete");
@@ -57,8 +59,9 @@ function main() {
       // Task counter
       taskCounter();
     } else if (taskContent.length > 25) {
-      alert("Twoje zdanie nie może być dłuższe niż 25 znaków!");
+      alert("Twoje zdanie nie może mieć więcej niż 25 znaków");
     }
+    sortTasks();
     // Empty input
     taskInput.value = "";
   }
@@ -71,6 +74,34 @@ function main() {
       }
     });
   }
+
+  function taskRankNumber() {
+    var userChoice = rankList.options[rankList.selectedIndex].value;
+    // Chcialem uzyc 'this' zamiast 'rankList' ale nie moge? 'this' wskazuje na 'window'
+    return userChoice;
+  }
+
+  function sortTasks() {
+    var tasks = [...toDoList.querySelectorAll("li")];
+    var sortedTasks = tasks.sort(function(a, b) {
+      return (
+        parseInt(b.firstElementChild.textContent, 10) -
+        parseInt(a.firstElementChild.textContent, 10)
+      );
+    });
+    clearList();
+    // Dodawanie elementow od nowa jest malo efektywne ale tylko tak mi zadzialalo, moze konstruktor?
+    for (var i = 0; i < sortedTasks.length; i++) {
+      toDoList.appendChild(sortedTasks[i]);
+    }
+  }
+
+  function clearList() {
+    toDoList.innerHTML = "";
+    return toDoList;
+  }
+
+  rankList.addEventListener("change", taskRankNumber);
 
   taskInput.addEventListener("input", userInput);
 

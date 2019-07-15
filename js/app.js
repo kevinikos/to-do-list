@@ -9,7 +9,7 @@ function main() {
   function taskCounter() {
     var tasks = [...toDoList.querySelectorAll("li")];
     var unfinishedTasks = tasks.filter(function(task) {
-      return task.className != "cross-line";
+      return task.classList[1] != "cross-line";
     });
     var counter = unfinishedTasks.length;
     counterSpan.innerText =
@@ -41,6 +41,9 @@ function main() {
       toDoList.appendChild(task);
       task.innerHTML = `${taskContent} <sup>${taskRank}</sup>`;
       task.appendChild(taskCompleteBtn);
+      setTimeout(function() {
+        task.classList.add("show");
+      }, 10);
       taskCompleteBtn.appendChild(completeImg);
       taskCompleteBtn.setAttribute("title", "Complete");
       taskCompleteBtn.classList.add("btn", "btn-close");
@@ -69,7 +72,7 @@ function main() {
   function removeDoneTasks() {
     var tasks = [...toDoList.querySelectorAll("li")];
     tasks.forEach(function(task) {
-      if (task.className == "cross-line") {
+      if (task.classList[1] == "cross-line") {
         toDoList.removeChild(task);
       }
     });
@@ -77,7 +80,6 @@ function main() {
 
   function taskRankNumber() {
     var userChoice = rankList.options[rankList.selectedIndex].value;
-    // Chcialem uzyc 'this' zamiast 'rankList' ale nie moge? 'this' wskazuje na 'window'
     return userChoice;
   }
 
@@ -90,7 +92,6 @@ function main() {
       );
     });
     clearList();
-    // Dodawanie elementow od nowa jest malo efektywne ale tylko tak mi zadzialalo, moze konstruktor?
     for (var i = 0; i < sortedTasks.length; i++) {
       toDoList.appendChild(sortedTasks[i]);
     }
